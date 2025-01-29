@@ -22,11 +22,12 @@
 		s ERP systémy (plánování, nákup) a s Excelem jako nástrojem pro export, interpretaci výsledků a
 		analýzy pro rozhodování. Úkony jako vytváření nových tabulek, spojování přes SVYHLEDAT, ukládání, provádění 
 		mezikroků apod. jsou pro mě v SQL složitější a méně intuitivní. K práci využívám materiálů Engeta, WEB a velmi 
-		se mi pro výukové účely osvědčil ChatGPT, které dokáže posoudit můj kód, upozornit např. na chybějící čárku,
-		zodpovědět moje dotazy na fungování, vysvětlit princip atd.
+		se mi pro výukové účely osvědčil ChatGPT, které dokáže posoudit můj kód, upozornit např. na chybějící čárku a
+		inspirovat k možným řešením. Člověk si rychleji zažije principy práce z SQL, i když je to, pro mě, nekončící proces.
 	   
 # 1. Rostou v průběhu let mzdy ve všech odvětvích, nebo v některých klesají?
-		Postup je uložený ve v souboru Engeto projekt otázka číslo jedna včetně komentářů.
+		- Postup je uložený ve v souboru Engeto projekt otázka číslo jedna včetně komentářů.
+		
 		- provádím obecné průzkumné SELECTy ve všech relevantních tabulkách
 		- propouji ostatní tabulky s tabulkou czechia_paroll s cílem porozumět údajům (LEFT JOIN)
 		- zaměřuji se na průměrnou mzdu zaměstnace a přepočtený počet zaměstnanců zohledňující částečné úvazky
@@ -39,7 +40,8 @@
 		  
 
 # 2. Kolik je možné si koupit litrů mléka a kilogramů chleba za první a poslední srovnatelné období v dostupných datech cen a mezd?
-		Postup je uložený ve v souboru Engeto projekt otázka číslo dva včetně komentářů.
+		- Postup je uložený ve v souboru Engeto projekt otázka číslo dva včetně komentářů.
+		
 		- provádím obecné průzkumné SELECTy v tabulkách czechia_price, czechia_price_category, czechia_region
 		- připojuji sloupce z czechia_price_category a czechia_region do czechia_price, vytvářím view mezikrok_ceny
 		- identifikuji řády s NULL hodnotami - pouze ve sloupci region_code (pro otázku nepodstatné)
@@ -56,6 +58,7 @@
 
 # 3. Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?
 		- Postup je uložený ve v souboru Engeto projekt otázka číslo tři včetně komentářů.
+		
 		- Vytvářím přehled odvětví a vývoje cen v jednotlivých letech, používám CTE a LAG klauzuli
 		- Rozhoduji se porovnat roky 2006 a 2018 a vybrat položky s nejpomalejším nárůstem
 		- používám vnořený SELECT poskytující náhled na ceny 2006 a 2018 a seřadí položky dle nejmenšího
@@ -65,6 +68,7 @@
 		  
 # 4. Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %)?	 
 		- Postup je uložený ve v souboru Engeto projekt otázka číslo čtyři včetně komentářů.
+		
 		- vytvářím přehled procetní změny cen potravin všechn kategorií seskupených po jednotlivých letech
 		- využívám klauzule LAG, CASE
 		- vytvářím procentní změny mezd seskupených po jednotlivých letech
@@ -76,7 +80,8 @@
 
 	##Neboli, pokud HDP vzroste výrazněji v jednom roce, projeví se to na cenách potravin či mzdách ve stejném nebo násdujícím roce výraznějším růstem?
 		
-		- Postup je uložený ve v souboru Engeto projekt otázka číslo čtyři včetně komentářů.
+		- Postup je uložený ve v souboru Engeto projekt otázka číslo pět včetně komentářů.
+		
 		- Průzkum tabuly economies a ověření názvu pro českou republiku
 		- Vytvoření sestavy zobrazující % změnu v HDP v České republice v letech 2006 a 2018
 		- Finální dotaz spoující % změny cen potravin, % změny mezd, a % změny HDP v letech 2006 až 2018
@@ -85,11 +90,21 @@
 		Závěr:
 			Obecně můžeme konstatovat, že za sledované období roste HDP, rovněž roste cenová hladina potravin a úroveň mezd. Pokud jde o změnu HDP, tak 
 			se pokles HDP období krize 2008 - 2009 projevil na zpomalení růstu platů cca s ročním zpoždění a během let 2011 - 2013 doško opětovně
-			k poklesu HDP i ke zpomalení růstu platů a dokonce k jejich poklesu. V obdobích růstu je podobný vývoj, akorát opačným směrem. Tzn. Výraznější
+			k poklesu HDP i ke zpomalení růstu platů a dokonce k jejich poklesu. V obdobích růstu je podobný vývoj, akorát opačným směrem. Tzn. výraznější
 			růst HDP vede k výraznějším růstum v oblasti platů.
 			Pokud jde o vzah změny HDP ke změnám cen potravin, nelze najít jasnou souvislos mezi změnami HDP a vývojem cen v daném/následujícím roce.
 			Do vývoje cen potravin vstupují i ji jiné vlivy (obecná inflace v ekonomice, světové ceny).
-		
+			
+	
+# Poznámky na Závěr
+		- Během přípravy dat na jednotlivé dotazy jsem si připravil VIEW mezikrok_ceny a mezikrok_mzdy, se kterými jsem pak dále pracoval.
+		- Rovněž jsem je používal ke vnořeným SELECTům, zejména k otázce číslo 5. Během své práce jsem si tedy na začátku nevytvořil
+		  tabulku t_{jmeno}_{prijmeni}_project_SQL_primary_final - nicméně její funkci nahrazují právě výše zmíněné VIEWs. Přišlo mi přehlednější
+		  vytvořit VIEW spojující tabulky zaměřené na mzdy a ceny zvlášť a poté tyto VIEW použít jako zdroj pro finální zobrazení. Osobně bych si nevytvářel
+		  jednu extrémně velkou zdrojovou tabulku se všemi daty. Možná se takto nepracuje, jsem teprve začátečník :)
+		  
+		- Tabulku t_{jmeno}_{prijmeni}_project_SQL_secondary_final jsem vytovřil pro několi vybraných evropských zemí.
+		  
 		
 
 		  
