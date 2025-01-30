@@ -13,17 +13,19 @@
 	4. Existuje rok, ve kterém byl meziroční nárůst cen potravin výrazně vyšší než růst mezd (větší než 10 %)?
 	5. Má výška HDP vliv na změny ve mzdách a cenách potravin? Neboli, pokud HDP vzroste výrazněji v jednom roce, 
 	   projeví se to na cenách potravin či mzdách ve stejném nebo násdujícím roce výraznějším růstem?
-	
-	   Výsledkem jsou dvě finální tabulky zaměřené na ČR a zahraničí. V mém případě také kompletní postup, 
-	   pro všech 5 otázek uložených v samostatných SQL souborech, uložených přes GITHUB.
+	   
+	   Každá z otázek je řešena zvlášť v SQL souboru uložném na GITHUB včetně kompletního postupu v SQL.
 	   
 # Obecné problémy při práci s SQL:
 		SQL je pro mě nová záležitost, se kterou jsem neměl v minulosti žádné zkušenosti. Na mé pozici pracuji
 		s ERP systémy (plánování, nákup) a s Excelem jako nástrojem pro export, interpretaci výsledků a
 		analýzy pro rozhodování. Úkony jako vytváření nových tabulek, spojování přes SVYHLEDAT, ukládání, provádění 
 		mezikroků apod. jsou pro mě v SQL složitější a méně intuitivní. K práci využívám materiálů Engeta, WEB a velmi 
-		se mi pro výukové účely osvědčil ChatGPT, které dokáže posoudit můj kód, upozornit např. na chybějící čárku a
+		se mi pro výukové účely osvědčil ChatGPT, který dokáže posoudit můj kód, upozornit např. na chybějící čárku a
 		inspirovat k možným řešením. Člověk si rychleji zažije principy práce z SQL, i když je to, pro mě, nekončící proces.
+	
+		Při zodpovídání otázek jsem si nevytvořil jednu velkou tabulku spojující price tabuly a payroll tabulky. Místo toho
+		jsem použil dva VIEWs, které jsem poté používal v dalších krocích a ve výsledku i spojoval.
 	   
 # 1. Rostou v průběhu let mzdy ve všech odvětvích, nebo v některých klesají?
 		- Postup je uložený ve v souboru Engeto projekt otázka číslo jedna včetně komentářů.
@@ -85,7 +87,7 @@
 		- Průzkum tabuly economies a ověření názvu pro českou republiku
 		- Vytvoření sestavy zobrazující % změnu v HDP v České republice v letech 2006 a 2018
 		- Finální dotaz spoující % změny cen potravin, % změny mezd, a % změny HDP v letech 2006 až 2018
-		- Jedná se o vytovření přehled ze třech SELECTů, nejdelší dotaz, který je součástí mého projektu
+		- Jedná se o vytovření přehledu ze třech SELECTů, nejdelší dotaz, který je součástí mého projektu
 		
 		Závěr:
 			Obecně můžeme konstatovat, že za sledované období roste HDP, rovněž roste cenová hladina potravin a úroveň mezd. Pokud jde o změnu HDP, tak 
