@@ -16,7 +16,7 @@ FROM
 GROUP BY 
 	YEAR(DATE(mc.date_from))
 ORDER BY
-	YEAR(DATE(mc.date_from))
+	YEAR(DATE(mc.date_from));
 
 -- Závěr: Průměrný nárůst potravin v žádné roce nepřevýšil 10%
 	
@@ -39,7 +39,7 @@ WHERE payroll_year BETWEEN 2006 AND 2018
 GROUP BY 
 		mm.payroll_year 
 ORDER BY
-		mm.payroll_year 
+		mm.payroll_year; 
 		
 -- V žádném roce nepřevýšil nárůst mezd 10%
 		
@@ -82,5 +82,5 @@ GROUP BY
 		mm.payroll_year 
 ORDER BY
 		mm.payroll_year ) AS zmena_platu
-		ON zmena_cen.year_from = zmena_platu.payroll_year
+		ON zmena_cen.year_from = zmena_platu.payroll_year;
 		

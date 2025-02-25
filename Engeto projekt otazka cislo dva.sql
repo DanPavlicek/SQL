@@ -3,13 +3,13 @@
 -- 1. Provedení selectů v tabulkách czechia_price, czechia_price_category, czechia_region
 
 SELECT *
-FROM czechia_price AS cp 
+FROM czechia_price AS cp;
 
 SELECT *
-FROM czechia_price_category AS cpc 
+FROM czechia_price_category AS cpc;
 
 SELECT *
-FROM czechia_region AS cr 
+FROM czechia_region AS cr;
 
 -- 2. připojení sloupců z czechia price category a czechia region do czechia_price pro lepší přehled a porozumění a vytvoření view mezikrok_ceny
 
@@ -24,7 +24,7 @@ FROM
 LEFT JOIN 
 		czechia_price_category cpc ON cpc.code = cp.category_code 
 LEFT JOIN 
-		czechia_region cr ON cr.code = cp.region_code 
+		czechia_region cr ON cr.code = cp.region_code; 
 
 -- 3. identifikace sloupců s null hodnotami - existují řádky s null hodnotami ve sloupci region_code - kraj, pro otázku č. 2 nepodstatné, podle mě
 
@@ -37,7 +37,7 @@ WHERE
 		mc.category_code IS NULL OR 
 		mc.date_from IS NULL OR 
 		mc.date_to IS NULL OR 
-		mc.region_code IS NULL
+		mc.region_code IS NULL;
 
 
 -- 4. Identifikace category code mléko a chleba 
@@ -47,7 +47,7 @@ SELECT DISTINCT
 FROM 
 		mezikrok_ceny AS mc 
 ORDER BY 
-		mc.kategorie ASC
+		mc.kategorie ASC;
 
 -- Výsledek mléko (114201) a chleba (111301)
 
@@ -60,7 +60,7 @@ WHERE
 		mc.category_code = 114201 or 
 		mc.category_code = 111301
 ORDER BY 
-		mc.date_from DESC 
+		mc.date_from DESC; 
 
 -- 6. Níže select pro zobrazení průměrných cen za rok 2006 a 2018 
 
@@ -96,7 +96,7 @@ ORDER BY
  
 SELECT 
 		payroll_year, 
-		avg(value) AS prumerna_mzda,
+		AVG(value) AS prumerna_mzda,
 		CASE 
         WHEN payroll_year = 2006 THEN (AVG(value) / 16.12364000000002)
         WHEN payroll_year = 2018 THEN (AVG(value) / 24.238500000000013)
@@ -111,7 +111,7 @@ FROM 	mezikrok_mzdy AS mm
 WHERE 
 		payroll_year IN (2006,2018)
 GROUP BY 
-		payroll_year  
+		payroll_year;
 
 -- 9. Výsledkem je počet ks chleba a litrů mléka, které si za průměrnou mzdu ze všech odvětví můžeme koupit v letech 2006 a 2018
 /*

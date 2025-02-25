@@ -52,7 +52,7 @@ SELECT
     WHERE 
         YEAR(DATE(date_from)) = 2006
     GROUP BY 
-       category_code, kategorie
+       category_code, kategorie;
 
 -- b) vnořený SELECT spojí výsledky cen za rok 2006 a 2018, vypočítá rozdíl a porovná s rokem 2006 a vypočítá procentní nárůst mezi roky 2006 a 2018
     

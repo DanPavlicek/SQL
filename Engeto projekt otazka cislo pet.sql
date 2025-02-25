@@ -13,7 +13,7 @@ SELECT
 DISTINCT
 	country 
 FROM 
-	economies AS e
+	economies AS e;
 
 -- 2. Vytvoření sestavy zobrazující % změnu v HDP v České republice v letech 2006 a 2018
 	
@@ -33,7 +33,7 @@ WHERE
 	e.`year` BETWEEN 2006 AND 2018 AND
 	e.country = "Czech Republic"
 ORDER BY
-	e.`year` ASC
+	e.`year` ASC;
 	
 -- Finální dotaz spoující % změny cen potravin, % změny mezd, a % změny HDP v letech 2006 až 2018
 	
@@ -93,7 +93,7 @@ WHERE
 	e.country = "Czech Republic"
 ORDER BY
 	e.`year` ASC) AS zmena_hdp
-	ON zmena_cen.year_from = zmena_hdp.rok
+	ON zmena_cen.year_from = zmena_hdp.rok;
 	
 	/*
 	 Obecně můžeme konstatovat, že za sledované období roste HDP, rovněž roste cenová hladina potravin a úroveň mezd. Pokud jde o změnu HDP, tak 
